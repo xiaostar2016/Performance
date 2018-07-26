@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.byd.performance_main.dao.UserDao">
+    <sql id="BASE_TABLE">
+    tb_user
+  </sql>
+
+    <sql id="BASE_COLUMN">
+    userId, userName, userPassword, userPhone
+  </sql>
+
+    <insert id="insert" parameterType="com.byd.performance_main.model.UserBean">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            userName, userPassword,
+            <!--<if test="userPhone != null">-->
+                userPhone,
+            <!--</if>-->
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{userName, jdbcType=VARCHAR},#{userPassword, jdbcType=VARCHAR},
+            <!--<if test="userPhone != null">-->
+                #{userPhone, jdbcType=VARCHAR},
+            <!--</if>-->
+        </trim>
+    </insert>
+
+    <select id="queryUserBean" resultType="com.byd.performance_main.model.UserBean">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
+
+
+</mapper>
