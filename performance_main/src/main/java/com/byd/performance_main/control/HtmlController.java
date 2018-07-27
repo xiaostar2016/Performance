@@ -23,22 +23,22 @@ public class HtmlController extends BaseController {
         return "Current Date: " + currentDate.toString() + " hello world";
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String showIndexHtml() {
-        logger.info("进入/test");
-        return "/test";
+        logger.info("进入/index");
+        return "/index";
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String showIndexHtml(Model mode) {
-        logger.info("进入/index页面");
+        logger.info("进入/test");
 
         UserBean userBean = new UserBean();
         userBean.setUserName("玲玲");
         userBean.setUserPassword("12345");
         userBean.setUserPhone("6666666666");
         mode.addAttribute("userBean", userBean);
-        return "/index";
+        return "/test";
     }
 
 }
